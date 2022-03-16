@@ -66,7 +66,7 @@ userRouter.post("/login", (req, res) => {
       }
       let token = jwt.generateAccessToken(username, process.env.JWT_SECRET);
       res.setHeader("Authorization", token);
-      res.status(200).json({ data: result });
+      res.status(200).json({ data: result, token: token });
     });
   });
 });

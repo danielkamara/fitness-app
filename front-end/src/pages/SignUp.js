@@ -23,7 +23,7 @@ const Signup = () => {
         <Button variant="primary" type="submit">
           Sign Up
         </Button>
-        <Link to="/signin">
+        <Link to="/login">
           <Button variant="primary" type="submit">
             Sign In
           </Button>

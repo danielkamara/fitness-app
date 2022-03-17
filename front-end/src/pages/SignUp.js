@@ -3,7 +3,10 @@ import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 
 const Signup = () => {
-  const [data, setData] = useState({});
+  const [initialForm] = useState({
+    email: "",
+    password: "",
+  });
   return (
     <div>
       <h1>SignUp Page</h1>

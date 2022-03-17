@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
+import { Form, Button } from "react-bootstrap";
+import { useState } from "react";
 
 const Signup = () => {
-  const [data, setData] = useState({
-    firstName,
-  });
+  const [data, setData] = useState({});
   return (
     <div>
       <h1>SignUp Page</h1>
@@ -23,7 +23,7 @@ const Signup = () => {
         <Button variant="primary" type="submit">
           Sign Up
         </Button>
-        <Link to="/login">
+        <Link to="/signin">
           <Button variant="primary" type="submit">
             Sign In
           </Button>

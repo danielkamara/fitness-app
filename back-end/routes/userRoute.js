@@ -55,18 +55,19 @@ userRouter.post("/login", (req, res) => {
     if (error) {
       res.status(400).json({ message: error.message });
     }
-    if (result === null || result === undefined) {
-      res.status(404).json({ message: "User Not Found" });
-    }
-    bcrypt.compare(password, result.password, (error, matching) => {
+    console.log(password);
+    bcrypt.compare(req.body.password, result.password, (error, matching) => {
       if (matching === false) {
         res
           .status(403)
           .json({ message: "Either username or password is incorrect" });
       }
-      let token = jwt.generateAccessToken(username, process.env.JWT_SECRET);
+      let token = jwt.generateAccessToken(
+        result.toObject(),
+        process.env.JWT_SECRET
+      );
       res.setHeader("Authorization", token);
-      res.status(200).json({ data: result, token: token });
+      return res.status(200).json({ data: result });
     });
   });
 });

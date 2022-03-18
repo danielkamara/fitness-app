@@ -19,10 +19,9 @@ function App(props) {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/" component={Login} />
-        <Route path="/login" component={Login} />
         <Route path="/signup" component={SignUp} />
         <Route path="/home" component={Home} />
+        <Route exact path="/" component={Login} />
       </Switch>
     </div>
   );

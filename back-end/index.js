@@ -16,17 +16,18 @@ dotenv.config();
 const app = express();
 
 // MAKE THE PORT
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5500;
 
 // Security
 app.use(helmet());
 
 // MIDDLE WARES!!!
-app.use(
-  cors({
-    origin: "*",
-  })
-);
+const corsConfig = {
+  origin: true,
+  credentials: true,
+};
+
+app.use(cors(corsConfig));
 app.use(bodyParser.json());
 app.use(morgan("dev"));
 

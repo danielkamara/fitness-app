@@ -5,11 +5,17 @@ export const USER_SIGNUP = "USER_SIGNUP";
 export const FETCH_FITNESS_SUCCESS = "FETCH_FITNESS_SUCCESS";
 export const FETCH_FITNESS_FAIL = "FETCH_FITNESS_FAIL";
 
-export const userLogin = (dispatch) => {
+export const userLogin = (acc) => (dispatch) => {
   dispatch({ type: USER_LOGIN });
+  // console.log(acc);
 
   axios
-    .post("https://dan-fitness-app.herokuapp.com/user/signin")
+    .post(
+      "http://localhost:5500/user/login",
+      acc,
+
+      { withCredentials: true }
+    )
     .then((data) => {
       dispatch({ type: FETCH_FITNESS_SUCCESS, payload: data });
     })
@@ -18,11 +24,13 @@ export const userLogin = (dispatch) => {
     });
 };
 
-export const userSignup = (dispatch) => {
+export const userSignup = (acc) => (dispatch) => {
   dispatch({ type: USER_SIGNUP });
 
   axios
-    .post("https://dan-fitness-app.herokuapp.com/user/signup")
+    .post("https://dan-fitness-app.herokuapp.com/user/register", acc, {
+      withCredentials: true,
+    })
     .then((data) => {
       dispatch({ type: FETCH_FITNESS_SUCCESS, payload: data });
     })

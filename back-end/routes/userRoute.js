@@ -34,10 +34,11 @@ userRouter.post("/register", async (req, res) => {
       }
       if (result === undefined || result === null) {
         return res.status(400).json({ message: "Please make a unique user" });
+      } else {
+        let token = jwt.generateAccessToken(username, process.env.JWT_SECRET);
+        res.setHeader("Authorization", token);
+        res.status(200).json({ data: result });
       }
-      let token = jwt.generateAccessToken(username, process.env.JWT_SECRET);
-      res.setHeader("Authorization", token);
-      res.status(200).json({ data: result });
     });
   } catch (error) {
     console.error(error.message);
@@ -61,13 +62,14 @@ userRouter.post("/login", (req, res) => {
         res
           .status(403)
           .json({ message: "Either username or password is incorrect" });
+      } else {
+        let token = jwt.generateAccessToken(
+          result.toObject(),
+          process.env.JWT_SECRET
+        );
+        res.setHeader("Authorization", token);
+        res.status(200).json({ data: result, token: token });
       }
-      let token = jwt.generateAccessToken(
-        result.toObject(),
-        process.env.JWT_SECRET
-      );
-      res.setHeader("Authorization", token);
-      return res.status(200).json({ data: result });
     });
   });
 });

@@ -17,7 +17,8 @@ export const userLogin = (acc) => (dispatch) => {
       { withCredentials: true }
     )
     .then((data) => {
-      dispatch({ type: FETCH_FITNESS_SUCCESS, payload: data });
+      localStorage.setItem("token", data.data.token);
+      dispatch({ type: FETCH_FITNESS_SUCCESS, payload: data.data.data });
     })
     .catch((err) => {
       dispatch({ type: FETCH_FITNESS_FAIL, payload: err.message });
@@ -28,7 +29,7 @@ export const userSignup = (acc) => (dispatch) => {
   dispatch({ type: USER_SIGNUP });
 
   axios
-    .post("https://dan-fitness-app.herokuapp.com/user/register", acc, {
+    .post("http://localhost:5500/user/register", acc, {
       withCredentials: true,
     })
     .then((data) => {

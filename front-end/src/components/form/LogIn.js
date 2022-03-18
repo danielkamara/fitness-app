@@ -2,20 +2,13 @@ import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { connect } from "react-redux";
 import { userLogin } from "../../actions/actions";
+import { useHistory } from "react-router";
 
 const LogIn = (props) => {
   const [user, setUser] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
-  //   const handleUser = (e) => {
-  //     e.preventDefault();
-  //     setUser(e.target.value);
-  //   };
-
-  //   const handlePassword = (e) => {
-  //     e.preventDefault();
-  //     setUserPassword(e.target.value);
-  //   };
+  const history = useHistory();
 
   const handleInput = (e) => {
     e.preventDefault(e);
@@ -30,8 +23,10 @@ const LogIn = (props) => {
 
   const handleSubmit = (e) => {
     console.log(user);
+
     e.preventDefault();
     props.userLogin({ username: user, password: userPassword });
+    history.push("/home");
   };
 
   return (

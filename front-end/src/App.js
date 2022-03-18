@@ -3,8 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import Login from "./pages/LogIn";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
-import { useEffect } from "react";
-import { userLogin } from "./actions/actions";
+
 import { connect } from "react-redux";
 
 const mapStateToProps = (state) => ({
@@ -13,9 +12,6 @@ const mapStateToProps = (state) => ({
 });
 
 function App(props) {
-  useEffect(() => {
-    props.userLogin();
-  }, []);
   return (
     <div className="App">
       <Switch>
@@ -27,4 +23,4 @@ function App(props) {
   );
 }
 
-export default connect(mapStateToProps, { userLogin })(App);
+export default connect(mapStateToProps, {})(App);

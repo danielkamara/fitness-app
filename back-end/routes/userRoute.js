@@ -25,9 +25,11 @@ userRouter.post("/register", async (req, res) => {
   try {
     if (!password || !user.username) {
       res.status(400).json({ message: "Please have a username AND password" });
+    } else {
+      let hashPassword = await bcrypt.hash(password, salt);
+      user.password = hashPassword;
     }
-    let hashPassword = await bcrypt.hash(password, salt);
-    user.password = hashPassword;
+
     User.create(user, (error, result) => {
       if (error) {
         return res.status(400).json({ message: error.message });

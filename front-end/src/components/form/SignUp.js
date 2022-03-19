@@ -8,16 +8,18 @@ const SignUp = (props) => {
     name: "",
     email: "",
     password: "",
+    birthday: "",
   });
 
   const handleSubmit = (e) => {
-    console.log(user);
+    // console.log(user);
     e.preventDefault();
     props.userSignup(user);
     setUser({
       name: "",
       email: "",
       password: "",
+      birthday: "",
     });
   };
 

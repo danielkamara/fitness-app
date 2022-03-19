@@ -33,7 +33,7 @@ app.use(morgan("dev"));
 
 // Routes
 app.use("/user", userRouter);
-// app.use("/register", userRouter);
+app.use("/register", userRouter);
 
 // Base Route
 app.get("/", (req, res) => {

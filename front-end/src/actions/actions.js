@@ -1,18 +1,19 @@
 import axios from "axios";
+import { url } from "../api";
 export const USER_LOGIN = "USER_LOGIN";
 export const USER_SIGNUP = "USER_SIGNUP";
 
 export const FETCH_FITNESS_SUCCESS = "FETCH_FITNESS_SUCCESS";
 export const FETCH_FITNESS_FAIL = "FETCH_FITNESS_FAIL";
 
-export const userLogin = (acc) => (dispatch) => {
+export const userLogin = (user) => (dispatch) => {
   dispatch({ type: USER_LOGIN });
   // console.log(acc);
 
   axios
     .post(
-      "http://localhost:5500/user/login",
-      acc,
+      `${url}/user/login`,
+      user,
 
       { withCredentials: true }
     )
@@ -25,11 +26,11 @@ export const userLogin = (acc) => (dispatch) => {
     });
 };
 
-export const userSignup = (acc) => (dispatch) => {
+export const userSignup = (user) => (dispatch) => {
   dispatch({ type: USER_SIGNUP });
 
   axios
-    .post("http://localhost:5500/user/register", acc, {
+    .post("http://localhost:5500/user/register", user, {
       withCredentials: true,
     })
     .then((data) => {

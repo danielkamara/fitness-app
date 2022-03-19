@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { userSignup } from "../../actions/actions";
 
-const SignUp = (props) => {
+const SignUpForm = (props) => {
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -11,8 +12,9 @@ const SignUp = (props) => {
     birthday: "",
   });
 
+  const history = useHistory();
+
   const handleSubmit = (e) => {
-    // console.log(user);
     e.preventDefault();
     props.userSignup(user);
     setUser({
@@ -21,6 +23,7 @@ const SignUp = (props) => {
       password: "",
       birthday: "",
     });
+    history.push("/home");
   };
 
   return (
@@ -71,4 +74,4 @@ const SignUp = (props) => {
   );
 };
 
-export default connect(null, { userSignup })(SignUp);
+export default connect(null, { userSignup })(SignUpForm);

@@ -8,7 +8,6 @@ export const FETCH_FITNESS_FAIL = "FETCH_FITNESS_FAIL";
 
 export const userLogin = (user) => (dispatch) => {
   dispatch({ type: USER_LOGIN });
-  // console.log(acc);
 
   axios
     .post(
@@ -20,6 +19,7 @@ export const userLogin = (user) => (dispatch) => {
     .then((data) => {
       localStorage.setItem("token", data.data.token);
       dispatch({ type: FETCH_FITNESS_SUCCESS, payload: data.data.data });
+      console.log(data.data.token);
     })
     .catch((err) => {
       dispatch({ type: FETCH_FITNESS_FAIL, payload: err.message });
@@ -30,11 +30,13 @@ export const userSignup = (user) => (dispatch) => {
   dispatch({ type: USER_SIGNUP });
 
   axios
-    .post("http://localhost:5500/user/register", user, {
+    .post(`${url}/user/register`, user, {
       withCredentials: true,
     })
     .then((data) => {
+      localStorage.setItem("token", data.data.token);
       dispatch({ type: FETCH_FITNESS_SUCCESS, payload: data });
+      console.log(data.data.token);
     })
     .catch((err) => {
       dispatch({ type: FETCH_FITNESS_FAIL, payload: err.message });

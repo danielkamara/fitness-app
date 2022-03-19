@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { userLogin } from "../../actions/actions";
 import { useHistory } from "react-router";
 
-const LogIn = (props) => {
+const LogInForm = (props) => {
   const [user, setUser] = useState("");
   const [userPassword, setUserPassword] = useState("");
 
@@ -46,7 +46,7 @@ const LogIn = (props) => {
         <Form.Group className="mb-3" controlId="formBasicPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
-            // type="password"
+            type="password"
             placeholder="Password"
             onChange={handleInput}
             id="password"
@@ -61,4 +61,4 @@ const LogIn = (props) => {
   );
 };
 
-export default connect(null, { userLogin })(LogIn);
+export default connect(null, { userLogin })(LogInForm);

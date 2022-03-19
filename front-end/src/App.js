@@ -1,7 +1,7 @@
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
-import Login from "./pages/LogIn";
-import SignUp from "./pages/SignUp";
+import Login from "./pages/LogInPage";
+import SignUp from "./pages/SignUpPage";
 import Home from "./pages/Home";
 
 import { connect } from "react-redux";

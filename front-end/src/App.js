@@ -1,7 +1,7 @@
 import "./App.css";
 import { Switch, Route } from "react-router-dom";
-import Login from "./pages/LogInPage";
-import SignUp from "./pages/SignUpPage";
+import LogInPage from "./pages/LogInPage";
+import SignUpPage from "./pages/SignUpPage";
 import Home from "./pages/Home";
 
 import { connect } from "react-redux";
@@ -15,8 +15,8 @@ function App(props) {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/" component={Login} />
-        <Route path="/signup" component={SignUp} />
+        <Route exact path="/" component={LogInPage} />
+        <Route path="/signup" component={SignUpPage} />
         <Route path="/home" component={Home} />
       </Switch>
     </div>

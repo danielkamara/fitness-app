@@ -35,7 +35,7 @@ export const userSignup = (user) => (dispatch) => {
     })
     .then((data) => {
       localStorage.setItem("token", data.data.token);
-      dispatch({ type: FETCH_FITNESS_SUCCESS, payload: data });
+      dispatch({ type: FETCH_FITNESS_SUCCESS, payload: data.data.data });
       console.log(data.data.token);
     })
     .catch((err) => {

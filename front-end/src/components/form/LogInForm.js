@@ -22,8 +22,6 @@ const LogInForm = (props) => {
   };
 
   const handleSubmit = (e) => {
-    console.log(user);
-
     e.preventDefault();
     props.userLogin({ username: user, password: userPassword });
     history.push("/home");
@@ -32,7 +30,7 @@ const LogInForm = (props) => {
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
+        <Form.Group className="mb-3" controlId="formUsername">
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="text"
@@ -43,10 +41,10 @@ const LogInForm = (props) => {
           <Form.Text></Form.Text>
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Group className="mb-3" controlId="formPassword">
           <Form.Label>Password</Form.Label>
           <Form.Control
-            type="password"
+            type="text"
             placeholder="Password"
             onChange={handleInput}
             id="password"

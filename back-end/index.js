@@ -1,7 +1,8 @@
 // NPM Packages
+
+const dotenv = require("dotenv");
 const express = require("express");
 const bodyParser = require("body-parser");
-const dotenv = require("dotenv");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const cors = require("cors");
@@ -16,7 +17,7 @@ dotenv.config();
 const app = express();
 
 // MAKE THE PORT
-const port = process.env.PORT || 5500;
+const PORT = process.env.PORT || 5500;
 
 // Security
 app.use(helmet());
@@ -41,7 +42,7 @@ app.get("/", (req, res) => {
 });
 
 // Listen
-app.listen(port, () => {
+app.listen(PORT, () => {
   mongoConnection();
-  console.log(`Server is listening at ${port}`);
+  console.log(`Server is listening at ${PORT}`);
 });

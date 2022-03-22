@@ -102,4 +102,29 @@ userRouter.post("/login", (req, res) => {
   });
 });
 
+userRouter.put("/:id", (req, res) => {
+  const id = req.params.id;
+  const update = req.body;
+
+  User.findByIdAndUpdate(id, update, { new: true }, (error, result) => {
+    if (error) {
+      res.status(500).json({ message: error.message });
+    }
+    if (result === null || result === []) {
+      res.status(404).json({ message: error.message });
+    }
+    res.status(202).json({ data: result });
+  });
+});
+
+userRouter.delete("/:id", (req, res) => {
+  const id = req.params.id;
+  User.findByIdAndDelete(id, (error, result) => {
+    if (error) {
+      res.status(404).json({ message: error.message });
+    }
+    res.status(204).json({ status: "deleted" });
+  });
+});
+
 module.exports = userRouter;

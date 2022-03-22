@@ -29,7 +29,7 @@ const SignUpForm = (props) => {
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group className="mb-3" controlId="formBasicUsername">
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="text"
@@ -63,7 +63,7 @@ const SignUpForm = (props) => {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Group className="mb-3" controlId="formBasicBirthday">
           <Form.Label>Birthday</Form.Label>
           <Form.Control
             type="text"

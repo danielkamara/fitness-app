@@ -32,25 +32,26 @@ userRouter.post("/register", async (req, res) => {
       );
   };
 
-  if (!password || !user.username) {
+  if (!password || !user.username || !user.email) {
     return res
       .status(400)
       .json({ message: "Please have a username AND password" });
   }
+  if (!validateEmail(email)) {
+    return res.status(400).json({ message: "Please have a valid email" });
+  }
+
   let hashPassword = await bcrypt.hash(password, salt);
   user.password = hashPassword;
 
   User.create(user, (error, result) => {
     if (error) {
-      return res.status(400).json({ message: error.message });
+      res.status(400).json({ message: error.message });
     }
     if (result === undefined || result === null) {
-      return res.status(400).json({ message: "Please make a unique user" });
+      res.status(400).json({ message: "Please make a unique user" });
     }
 
-    if (!validateEmail(email)) {
-      return res.status(400).json({ message: "Invalid Email" });
-    }
     let token = jwt.generateAccessToken(username, process.env.JWT_SECRET);
     res.setHeader("Authorization", token);
     res.status(200).json({ data: result, token: token });
@@ -62,6 +63,7 @@ userRouter.post("/login", (req, res) => {
   let password = req.body.password;
   if (!password || !username) {
     res.status(400).json({ message: "Please have a username AND password" });
+    console.log(username);
   }
   User.findOne({ username: username }, (error, result) => {
     if (error) {
@@ -70,17 +72,17 @@ userRouter.post("/login", (req, res) => {
     if (result === null || result === undefined) {
       res.status(404).json({ message: "User Not Found" });
     }
-    console.log(password);
-    bcrypt.compare(req.body.password, password, (error, matching) => {
+
+    bcrypt.compare(password, result.password, (error, matching) => {
       if (error) {
         res.status(403).json({ message: error.message });
-      }
-      if (matching === false) {
+      } else if (matching === false) {
         res
           .status(403)
           .json({ message: "Either username or password is incorrect" });
       }
       let token = jwt.generateAccessToken(
+        username,
         result.toObject(),
         process.env.JWT_SECRET
       );

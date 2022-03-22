@@ -2,7 +2,6 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const User = require("../schema/userSchema");
 const jwt = require("../middleware/jwt");
-// const { userSignup } = require("../../front-end/src/actions/actions");
 
 const userRouter = express.Router();
 

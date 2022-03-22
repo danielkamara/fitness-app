@@ -27,4 +27,5 @@ Packages used for Back End are:
 
 MongoDb was used for the database
 
-The Back End was hosted on Heroku. Here is the link : https://dan-fitness-app.herokuapp.com/
+The Back End was hosted on Heroku.
+Here is the link : https://dan-fitness-app.herokuapp.com/

@@ -34,3 +34,6 @@ Here is the link : https://dan-fitness-app.herokuapp.com/
 
 - Users will be able to track their progress.
 - Users will be able workout with other users with additional workout goals.
+- User will be able to post workout achievements.
+- Videos to give instructions on how to perform specific workouts.
+- Streaming feature where users can workout in real time.

@@ -29,3 +29,8 @@ MongoDb was used for the database
 
 The Back End was hosted on Heroku.
 Here is the link : https://dan-fitness-app.herokuapp.com/
+
+# Upcoming Features
+
+- Users will be able to track their progress.
+- Users will be able workout with other users with additional workout goals.

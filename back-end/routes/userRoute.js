@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const User = require("../schema/userSchema");
 const jwt = require("../middleware/jwt");
+// const { userSignup } = require("../../front-end/src/actions/actions");
 
 const userRouter = express.Router();
 
@@ -40,6 +41,15 @@ userRouter.post("/register", async (req, res) => {
   if (!validateEmail(email)) {
     return res.status(400).json({ message: "Please have a valid email" });
   }
+
+  const userEmail = await User.findOne({ email });
+  if (userEmail)
+    return res.status(400).json({ message: "This email already exist." });
+
+  if (password.length < 5)
+    return res
+      .status(400)
+      .json({ message: "Password must be at least 5 characters long. " });
 
   let hashPassword = await bcrypt.hash(password, salt);
   user.password = hashPassword;
